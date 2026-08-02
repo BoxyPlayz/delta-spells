@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "delta_spells",
+	"version": "${version}",
+	"name": "Delta Spells",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/delta_spells/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.boxyplayz.deltaspells.DeltaSpells"
+		],
+		"client": [
+			"com.boxyplayz.deltaspells.client.DeltaSpellsClient"
+		],
+		"fabric-datagen": [
+			"com.boxyplayz.deltaspells.client.datagen.DeltaSpellsDataGenerator"
+		]
+	},
+	"mixins": [
+		"delta_spells.mixins.json",
+		{
+			"config": "delta_spells.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.1",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
