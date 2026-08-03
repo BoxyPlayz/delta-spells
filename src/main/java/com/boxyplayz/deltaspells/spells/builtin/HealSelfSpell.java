@@ -3,10 +3,15 @@ package com.boxyplayz.deltaspells.spells.builtin;
 import com.boxyplayz.deltaspells.spells.Spell;
 import com.boxyplayz.deltaspells.spells.SpellReturnType;
 
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 public class HealSelfSpell extends Spell {
+
+	public HealSelfSpell(Identifier Id) {
+		super(Id);
+	}
 
 	@Override
 	public String getName() {

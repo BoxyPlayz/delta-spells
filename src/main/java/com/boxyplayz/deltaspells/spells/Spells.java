@@ -15,7 +15,8 @@ public class Spells {
 		return Registry.register(SpellRegistry.SPELL_REGISTRY, id, spell);
 	}
 
-	public static final HealSelfSpell HEAL_SELF = registerSpell("heal_self", new HealSelfSpell());
+	public static final HealSelfSpell HEAL_SELF = registerSpell("heal_self",
+			new HealSelfSpell(DeltaSpells.id("heal_self")));
 
 	public static void init() {
 

@@ -1,12 +1,27 @@
 package com.boxyplayz.deltaspells.spells;
 
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 public abstract class Spell {
+	protected Identifier id;
+
 	public abstract String getName();
 
 	public abstract String getDescription();
 
 	public abstract SpellReturnType use(final Level level, final Player player);
+
+	public Spell(Identifier Id) {
+		this.id = Id;
+	}
+
+	public Identifier getId() {
+		return this.id;
+	}
+
+	public boolean is(Spell spell) {
+		return spell.getId() == this.id;
+	}
 }
