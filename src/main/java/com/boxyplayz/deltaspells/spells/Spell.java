@@ -6,7 +6,7 @@ import net.minecraft.world.level.Level;
 
 public abstract class Spell {
 	protected Identifier id;
-	protected int cost;
+	protected byte cost;
 
 	public abstract String getName();
 
@@ -14,7 +14,7 @@ public abstract class Spell {
 
 	public abstract SpellReturnType use(final Level level, final Player player);
 
-	public Spell(Identifier Id, int Cost) {
+	public Spell(Identifier Id, byte Cost) {
 		this.id = Id;
 		this.cost = Cost;
 	}
@@ -27,7 +27,7 @@ public abstract class Spell {
 		return spell.getId() == this.id;
 	}
 
-	public int getCost() {
+	public byte getCost() {
 		return this.cost;
 	}
 }

@@ -16,7 +16,7 @@ public class Spells {
 	}
 
 	public static final HealSelfSpell HEAL_SELF = registerSpell("heal_self",
-			new HealSelfSpell(DeltaSpells.id("heal_self"), 16));
+			new HealSelfSpell(DeltaSpells.id("heal_self"), (byte) 16));
 
 	public static void init() {
 

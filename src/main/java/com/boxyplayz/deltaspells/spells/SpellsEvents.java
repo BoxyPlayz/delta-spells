@@ -10,10 +10,8 @@ import net.minecraft.server.level.ServerPlayer;
 public class SpellsEvents {
 	public static void init() {
 		ServerPlayNetworking.registerGlobalReceiver(ServerboundCastSpellPayload.TYPE, (payload, context) -> {
+			@SuppressWarnings("unused")
 			SpellReturnType spellReturned = payload.selected().use(context.player().level(), context.player());
-			if (spellReturned.errored) {
-				DeltaSpells.LOGGER.error(spellReturned.message.orElse("Error: [No Context Provided]"));
-			}
 		});
 
 		ServerLivingEntityEvents.AFTER_DAMAGE.register((entity, source, baseDamageTaken, damageTaken, blocked) -> {
@@ -22,7 +20,7 @@ public class SpellsEvents {
 					return;
 
 				int newTP = player.getAttachedOrElse(DeltaSpells.TP_ATTACHMENT, (byte) 0)
-						+ (int) Math.floor(baseDamageTaken);
+						+ (int) Math.floor(damageTaken);
 
 				if (newTP > 100)
 					newTP = 100;

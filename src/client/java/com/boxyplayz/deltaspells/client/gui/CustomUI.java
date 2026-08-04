@@ -7,12 +7,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphicsExtractor;
 
-public class TPBar {
+public class CustomUI {
 	public static void extract(GuiGraphicsExtractor graphics, DeltaTracker tickCounter) {
 		Minecraft minecraft = Minecraft.getInstance();
 
-		if (minecraft.player == null)
+		if (minecraft.player == null) {
 			return;
+		}
 
 		int yellow = 0xFFFFFF00; // Yellow
 		int black = 0xFF000000; // Black
