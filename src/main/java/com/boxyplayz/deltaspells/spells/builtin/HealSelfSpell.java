@@ -1,6 +1,5 @@
 package com.boxyplayz.deltaspells.spells.builtin;
 
-import com.boxyplayz.deltaspells.DeltaSpells;
 import com.boxyplayz.deltaspells.spells.Spell;
 import com.boxyplayz.deltaspells.spells.SpellReturnType;
 
@@ -25,12 +24,7 @@ public class HealSelfSpell extends Spell {
 	}
 
 	@Override
-	public SpellReturnType use(Level level, Player player) {
-		byte tp = player.getAttachedOrElse(DeltaSpells.TP_ATTACHMENT, (byte) 0);
-		if (tp < getCost()) {
-			return new SpellReturnType(true, "Not enough TP");
-		}
-
+	public SpellReturnType customUse(Level level, Player player) {
 		if (player.getHealth() + 4 < player.getMaxHealth()) {
 			player.heal(4);
 		} else if (player.getHealth() <= player.getMaxHealth()) {
@@ -38,10 +32,6 @@ public class HealSelfSpell extends Spell {
 		} else {
 			return new SpellReturnType(true, "You're already healed!");
 		}
-
-		tp -= (byte) getCost();
-
-		player.setAttached(DeltaSpells.TP_ATTACHMENT, tp);
 
 		return SpellReturnType.SUCCESS;
 	}
