@@ -9,8 +9,8 @@ import net.minecraft.world.level.Level;
 
 public class HealSelfSpell extends Spell {
 
-	public HealSelfSpell(Identifier Id) {
-		super(Id);
+	public HealSelfSpell(Identifier Id, int Cost) {
+		super(Id, Cost);
 	}
 
 	@Override
