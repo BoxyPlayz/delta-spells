@@ -22,7 +22,7 @@ public abstract class Spell {
 
 		SpellReturnType returnVal = customUse(level, player);
 
-		if (returnVal.errored) {
+		if (!returnVal.errored) {
 			tp -= (byte) getCost();
 
 			player.setAttached(DeltaSpells.TP_ATTACHMENT, tp);
