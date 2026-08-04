@@ -10,7 +10,7 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
 
-public record ServerboundCastSpellPayload(Spell selected, int playerId) implements CustomPacketPayload {
+public record ServerboundCastSpellPayload(Spell selected) implements CustomPacketPayload {
 
 	public static final Identifier CAST_SPELL_PAYLOAD_ID = DeltaSpells.id("cast_spell_payload");
 
@@ -19,7 +19,6 @@ public record ServerboundCastSpellPayload(Spell selected, int playerId) implemen
 
 	public static final StreamCodec<RegistryFriendlyByteBuf, ServerboundCastSpellPayload> CODEC = StreamCodec
 			.composite(ByteBufCodecs.registry(SpellRegistry.SPELL_REGISTRY_KEY), ServerboundCastSpellPayload::selected,
-					ByteBufCodecs.INT, ServerboundCastSpellPayload::playerId,
 					ServerboundCastSpellPayload::new);
 
 	@Override

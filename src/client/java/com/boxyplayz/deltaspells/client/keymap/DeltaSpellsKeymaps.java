@@ -43,8 +43,7 @@ public class DeltaSpellsKeymaps {
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			while (castSpellKey.consumeClick()) {
 				if (client.player != null) {
-					ServerboundCastSpellPayload payload = new ServerboundCastSpellPayload(Spells.HEAL_SELF,
-							client.player.getId());
+					ServerboundCastSpellPayload payload = new ServerboundCastSpellPayload(Spells.HEAL_SELF);
 					ClientPlayNetworking.send(payload);
 				}
 			}

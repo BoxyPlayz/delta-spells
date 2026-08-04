@@ -1,7 +1,11 @@
 package com.boxyplayz.deltaspells;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentSyncPredicate;
+import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.resources.Identifier;
 
 import org.jspecify.annotations.NonNull;
@@ -12,9 +16,20 @@ import com.boxyplayz.deltaspells.networking.ServerboundCastSpellPayload;
 import com.boxyplayz.deltaspells.registry.SpellRegistry;
 import com.boxyplayz.deltaspells.spells.Spells;
 import com.boxyplayz.deltaspells.spells.SpellsEvents;
+import com.mojang.serialization.Codec;
 
 public class DeltaSpells implements ModInitializer {
 	public static final String MOD_ID = "delta_spells";
+
+	public static final AttachmentType<Byte> TP_ATTACHMENT = AttachmentRegistry.create(
+			id("tp_energy"),
+			builder -> builder
+					.initializer(() -> (byte) 0) // The default value of the Attachment, if one has not been set.
+					.syncWith(
+							ByteBufCodecs.BYTE, // Dictates how to turn the data into a packet to send to clients.
+							AttachmentSyncPredicate.targetOnly() // Dictates who to send the data to.
+					)
+					.persistent(Codec.BYTE));
 
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
