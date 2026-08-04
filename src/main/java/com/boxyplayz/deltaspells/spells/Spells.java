@@ -4,6 +4,7 @@ import org.jspecify.annotations.NonNull;
 
 import com.boxyplayz.deltaspells.DeltaSpells;
 import com.boxyplayz.deltaspells.registry.SpellRegistry;
+import com.boxyplayz.deltaspells.spells.builtin.EmptySpell;
 import com.boxyplayz.deltaspells.spells.builtin.HealSelfSpell;
 
 import net.minecraft.core.Registry;
@@ -17,6 +18,9 @@ public class Spells {
 
 	public static final HealSelfSpell HEAL_SELF = registerSpell("heal_self",
 			new HealSelfSpell(DeltaSpells.id("heal_self"), (byte) 16));
+
+	public static final EmptySpell EMPTY = registerSpell("empty",
+			new EmptySpell(DeltaSpells.id("empty"), (byte) 0));
 
 	public static void init() {
 

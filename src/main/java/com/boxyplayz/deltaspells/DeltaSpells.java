@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import com.boxyplayz.deltaspells.networking.ServerboundCastSpellPayload;
 import com.boxyplayz.deltaspells.registry.SpellRegistry;
+import com.boxyplayz.deltaspells.spells.Spell;
 import com.boxyplayz.deltaspells.spells.Spells;
 import com.boxyplayz.deltaspells.spells.SpellsEvents;
 import com.mojang.serialization.Codec;
@@ -30,6 +31,17 @@ public class DeltaSpells implements ModInitializer {
 							AttachmentSyncPredicate.targetOnly() // Dictates who to send the data to.
 					)
 					.persistent(Codec.BYTE));
+
+	public static final AttachmentType<Spell> SELECTED_SPELL = AttachmentRegistry.create(
+			id("selected_spell"),
+			builder -> builder
+					.initializer(() -> Spells.EMPTY) // The default value of the Attachment, if one has not been set.
+					.syncWith(
+							ByteBufCodecs.registry(SpellRegistry.SPELL_REGISTRY_KEY), // Dictates how to turn the data
+																						// into a packet to send to
+																						// clients.
+							AttachmentSyncPredicate.targetOnly() // Dictates who to send the data to.
+					));
 
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
